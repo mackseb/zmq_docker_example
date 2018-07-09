@@ -1,0 +1,13 @@
+version: '3'
+services:
+  zmq-server:
+    build: ./server
+    environment:
+      - PYTHONUNBUFFERED=1
+  zmq-client:
+    build: ./client
+    environment:
+      - ADDRESS=tcp://zmq-server:5555
+      - PYTHONUNBUFFERED=1
+    depends_on:
+      - zmq-server
